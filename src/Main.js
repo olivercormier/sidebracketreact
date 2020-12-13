@@ -7,6 +7,7 @@ import TournamentDetails from './tournaments/TournamentDetails';
 import TournamentList from './tournaments/TournamentList';
 import AddTournament from './tournaments/AddTournament';
 import Home from './Home';
+import Login from './Login';
 
 class Main extends React.Component {
 
@@ -17,7 +18,7 @@ class Main extends React.Component {
                 <Route path="/tournaments/add" component={AddTournament}/>
                 <Route path="/tournaments/:id" component={TournamentDetails}/>
                 <Route path="/tournaments" component={TournamentList}/>
-                <Route path="/" component={Home}/>
+                <Route path="/" component={Login}/>
             </Switch>
         </div>
         );}
