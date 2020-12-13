@@ -51,6 +51,7 @@ class TournamentDetails extends React.Component {
     else if (this.state.tournament) {
       return (
         <div>
+          <h1>Tournament Details</h1>
           <p>
             Tournament Name: {this.state.tournament.name} <br/>
             Organizer Name: {this.state.user.username} <br/>

@@ -1,22 +1,23 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 
 class Login extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {value: '', users: {}};
+        this.state = {redirect: null, value: '', userLogin: []};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.redirectToHome = this.redirectToHome.bind(this);
     }
 
-    getUser() {
+    componentDidUpdate() {
         fetch("http://localhost:8080/users?email=" + this.state.value)
         .then( res => res.json())
-        .then((userData) => {
-            this.setState({users: userData});
-            console.log(userData);
-        });
+        .then((loginData) => {
+            this.setState({userLogin: loginData});
+        }).catch(console.log)
     }
 
     handleChange(event) {
@@ -24,16 +25,29 @@ class Login extends React.Component {
       }
     
       handleSubmit(event) {
-        var email = "";
-        email = this.state.value;
-        console.log(email);
+        //this.componentDidUpdate();
         event.preventDefault();
-        this.getUser();
+        var email = this.state.value;
+        var userEmail = this.state.userLogin[0].email;
+        if (email === userEmail) {
+          this.redirectToHome();
+        } else {
+          //console.log(this.state.value);
+          //console.log(this.state.userLogin[0].email);
+        }
+      }
+
+      redirectToHome() {
+        this.setState({redirect: "/"});
       }
 
     render() {
+      if (this.state.redirect) {
+        return <Redirect to={this.state.redirect} />
+      } else {
         return (
           <form onSubmit={this.handleSubmit}>
+            <h1>Login</h1>
             <label>
               Email:
               <input type="text" value={this.state.value} onChange={this.handleChange} />
@@ -42,6 +56,7 @@ class Login extends React.Component {
           </form>
         );
       }
+    }
 
 }
 export default Login;

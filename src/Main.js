@@ -18,7 +18,8 @@ class Main extends React.Component {
                 <Route path="/tournaments/add" component={AddTournament}/>
                 <Route path="/tournaments/:id" component={TournamentDetails}/>
                 <Route path="/tournaments" component={TournamentList}/>
-                <Route path="/" component={Login}/>
+                <Route path="/login" component={Login}/>
+                <Route path="/" component={Home}/>
             </Switch>
         </div>
         );}

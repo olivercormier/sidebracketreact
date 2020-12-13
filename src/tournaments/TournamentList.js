@@ -24,6 +24,7 @@ class TournamentList extends React.Component {
       
       return (
         <div>
+          <h1>Tournaments</h1>
           <table>
             <tbody>
               {tournaments}
