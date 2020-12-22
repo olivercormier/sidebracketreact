@@ -3,6 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 class Navigation extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {logoutHandler: this.props.logoutHandler};
+    }
+
     render() {
         return(
         <nav>
@@ -13,6 +18,7 @@ class Navigation extends React.Component {
                 <li>
                     <NavLink to='/tournaments'>Tournaments</NavLink>
                 </li>
+                <button onClick={this.state.logoutHandler}>Logout</button>
             </ul>
         </nav>
         );}

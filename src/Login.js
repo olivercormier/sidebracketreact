@@ -5,11 +5,27 @@ class Login extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {redirect: null, value: '', userLogin: []};
+        this.state = {redirect: null, value: '', userLogin: [], 
+        loginHandler: this.props.loginHandler};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.redirectToHome = this.redirectToHome.bind(this);
+        this.setEmail = this.setEmail.bind(this);
+        this.setPassword = this.setPassword.bind(this);
+        this.submitCredentials = this.submitCredentials.bind(this);
+    }
+
+    setEmail(event) {
+      this.setState({email: event.target.value});
+    }
+
+    setPassword(event) {
+      this.setState({password: event.target.value});
+    }
+
+    submitCredentials(_event) {
+      this.state.loginHandler(this.state.email, this.state.password);
     }
 
     componentDidUpdate() {
@@ -46,13 +62,11 @@ class Login extends React.Component {
         return <Redirect to={this.state.redirect} />
       } else {
         return (
-          <form onSubmit={this.handleSubmit}>
+          <form>
             <h1>Login</h1>
-            <label>
-              Email:
-              <input type="text" value={this.state.value} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
+            <input type="text" value={this.state.email} onChange={this.setEmail} placeholder="Enter Email"/> <br />
+            <input type="password" value={this.state.password} onChange={this.setPassword} placeholder="Enter Password"/> <br />
+            <button onClick={this.submitCredentials}>Login</button>
           </form>
         );
       }
