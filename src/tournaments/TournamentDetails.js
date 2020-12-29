@@ -11,6 +11,7 @@ class TournamentDetails extends React.Component {
     this.resultsRow = this.resultsRow.bind(this);
   }
 
+  // Uses the id from the url to fetch tournament details
   componentDidMount() {
     const id = this.props.match.params.id;
     fetch("http://localhost:8080/tournaments/" + id)
@@ -18,18 +19,21 @@ class TournamentDetails extends React.Component {
     .then((tourData) => {
       this.setState({tournament: tourData});
 
+      // Uses the gameId to get the game name
       fetch("http://localhost:8080/games/" + this.state.tournament.gameId)
       .then( res => res.json())
       .then((gameData) => {
         this.setState({game: gameData});
       });
 
+      // Uses tournamentId to get the results
       fetch("http://localhost:8080/results?tournamentId=" + id)
       .then( res => res.json())
       .then((resultData) => {
         this.setState({results: resultData});
       });
       
+      // Uses the organizerId to get organizer name
       fetch("http://localhost:8080/organizers/" + this.state.tournament.organizerId)
       .then(res => res.json())
       .then((orgData) => {
@@ -79,6 +83,7 @@ class TournamentDetails extends React.Component {
     
   }
 
+  // Return button uses redirect to return to tournament list if clicked
   returnToList() {
     this.setState({redirect: "/tournaments"});
   }

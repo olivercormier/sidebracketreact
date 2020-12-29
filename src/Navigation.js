@@ -8,6 +8,8 @@ class Navigation extends React.Component {
         this.state = {logoutHandler: this.props.logoutHandler};
     }
 
+    // Navigation bar which is then loaded on each page through App.js.
+    // Uses logoutHandler for logout button.
     render() {
         return(
         <nav>
@@ -18,6 +20,9 @@ class Navigation extends React.Component {
                 <li>
                     <NavLink to='/tournaments'>Tournaments</NavLink>
                 </li>
+                <li>
+                    <NavLink to='/tournaments/add'>Add Tournament</NavLink>
+                </li> 
                 <button onClick={this.state.logoutHandler}>Logout</button>
             </ul>
         </nav>
