@@ -12,7 +12,7 @@ class Navigation extends React.Component {
     // Uses logoutHandler for logout button.
     render() {
         return(
-        <nav>
+        <nav id="Navigation">
             <ul>
                 <li>
                     <NavLink to='/'>Home</NavLink>
@@ -23,7 +23,7 @@ class Navigation extends React.Component {
                 <li>
                     <NavLink to='/tournaments/add'>Add Tournament</NavLink>
                 </li> 
-                <button onClick={this.state.logoutHandler}>Logout</button>
+                <button id="logoutbutton" onClick={this.state.logoutHandler}>Logout</button>
             </ul>
         </nav>
         );}
